@@ -57,6 +57,7 @@ public class BookDataManager {
 				   String temp = pubelem.text();
 				   StringTokenizer st = new StringTokenizer(temp, "|");
 				   BookVO vo = new BookVO();
+				   vo.setNo(i);
 				   vo.setPoster(poster);
 				   vo.setReview(relem.text());
 				   vo.setTitle(telem.text());
@@ -73,6 +74,48 @@ public class BookDataManager {
 			   System.out.println(ex.getMessage());
 		   }
 		   return list;
+	   }
+	   public BookVO bookDetail(int no)
+	   {
+		   List<BookVO> list=new ArrayList<BookVO>();
+		   try
+		   {
+			   Document doc=Jsoup.connect("http://www.bandinlunis.com/front/display/listBest.do").get();
+			   Elements posterElem=doc.select("div.prod_thumb_img img");
+			   Elements reviewElem=doc.select("dl.prod_info dd.txt_bex");
+			   Elements titleElem =doc.select("dl.prod_info dt a");
+			   Elements opriceElem =doc.select("dd.mt5 span.txt_reprice");
+			   Elements spriceElem =doc.select("dd.mt5 span.txt_price strong em");
+			   Elements pubElem = doc.select("dl.prod_info dd.txt_block");
+			   for(int i=0; i<posterElem.size();i++)
+			   {
+				   Element pelem = posterElem.get(i);
+				   String poster = pelem.attr("src");
+				   Element relem = reviewElem.get(i);
+				   Element telem = titleElem.get(i);
+				   Element oelem = opriceElem.get(i);
+				   Element selem = spriceElem.get(i);
+				   Element pubelem = pubElem.get(i);
+				   String temp = pubelem.text();
+				   StringTokenizer st = new StringTokenizer(temp, "|");
+				   BookVO vo = new BookVO();
+				   vo.setNo(i);
+				   vo.setPoster(poster);
+				   vo.setReview(relem.text());
+				   vo.setTitle(telem.text());
+				   vo.setOprice(Integer.parseInt(oelem.text()
+						   .substring(0, oelem.text().lastIndexOf("원")).replace(",", "")));
+				   vo.setSprice(Integer.parseInt(selem.text().replace(",", "")));
+				   vo.setAuthor(st.nextToken().trim());
+				   vo.setPublisher(st.nextToken().trim());
+				   vo.setRegdate(st.nextToken().trim());
+				   list.add(vo);   
+			   }
+		   }catch(Exception ex)
+		   {
+			   System.out.println(ex.getMessage());
+		   }
+		   return BookVO;
 	   }
 	   public String book_review(String title, int page) {
 			StringBuffer sb = new StringBuffer();

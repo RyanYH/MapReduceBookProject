@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sist Book Store</title>
-<link rel="stylesheet" type="text/css" href="book/table.css">
+<link rel="stylesheet" type="text/css" href="table.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -23,14 +23,13 @@
 <body>
 	<center>
 		<h3>베스트 셀러 목록</h3>
-		<table id="table_content">
+		<table id="table_content" style="width:1000px">
 			<tr>
 				<td align="right">
 					<a href="total.do">베스트셀러러 전체통계</a>
 				</td>
 			</tr>
 		</table>
-	
 		<table id="table_content">
 			<tr>
 				<c:forEach var="vo" items="${list }" begin="0" end="9">
@@ -63,14 +62,45 @@
 				</c:forEach>
 			</tr>
 		</table>
-
+		<table id="table_content">
+			<tr>
+				<c:forEach var="vo" items="${list }" begin="10" end="19">
+					<td>
+						<a href="detail.do?no=${vo.no }" class="aImg" value="${vo.no }">
+						<img src="${vo.poster }" width="120" height="150" border=0 id="m${vo.no }">
+						</a>
+					</td>
+				</c:forEach>
+			</tr>
+			<tr>
+				<c:forEach var="vo" items="${list }" begin="10" end="19">
+					<td>
+						${vo.title }
+					</td>
+				</c:forEach>
+			</tr>
+		    <tr>
+				<c:forEach var="vo" items="${list }" begin="10" end="19">
+					<td>
+						<font color="red">예매율&nbsp;&nbsp;</font>${vo.author }%
+					</td>
+				</c:forEach>
+			</tr>
+			<tr>
+				<c:forEach var="vo" items="${list }" begin="10" end="19">
+					<td>
+						♡${vo.publisher }
+					</td>
+				</c:forEach>
+			</tr>
+		</table>
 
 		<table border=0 width=900>
 		    <tr>
 				<td>
 					<table id="table_content" style="width:300px">
 						<tr>
-							<th>영화 Ranking</th>
+							<th>책 Ranking</th>
 						</tr>
 <%-- 						<c:forEach var="str" items="${raList }" varStatus="status">
 					    <tr>
@@ -80,21 +110,21 @@
 					</table>
 				</td>
 				<td>
-<%-- 					<table id="table_content" style="width:300px">
+ 					<table id="table_content" style="width:300px">
 						<tr>
-							<th>영화 예매순</th>
+							<th>책 예매순</th>
 						</tr>
-						<c:forEach var="str" items="${reList }" varStatus="status">
+<%-- 						<c:forEach var="str" items="${reList }" varStatus="status">
 					    <tr>
 							<td>${status.index+1}위.&nbsp;${str }</td>
 						</tr>
-						</c:forEach>
-					</table> --%>
+						</c:forEach> --%>
+					</table> 
 				</td>
 				<td>
 					<table id="table_content" style="width:300px">
 						<tr>
-							<th>영화 박스오피스</th>
+							<th>책 박스오피스</th>
 						</tr>
 						<%-- <c:forEach var="str" items="${bList }" varStatus="status">
 					    <tr>

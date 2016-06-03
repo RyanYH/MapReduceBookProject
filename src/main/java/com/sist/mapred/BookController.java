@@ -47,7 +47,8 @@ public class BookController {
 
 	@RequestMapping("movie/detail.do")
 	public String movie_detail(int no, Model model) throws Exception {
-		/*BookVO vo = bgr.movieDetail(no);
+		BookVO vo = bgr.bookDetail(no);
+		/*
 		File file = new File(
 				"/home/sist/bigdataStudy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MapReduceWebProject/desc.txt");
 		if (file.exists()) {

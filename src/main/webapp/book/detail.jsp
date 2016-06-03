@@ -11,7 +11,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script type="text/javascript">
-$(function () {
+/* $(function () {
     $('#container').highcharts({
         chart: {
             type: 'pie',
@@ -47,7 +47,7 @@ $(function () {
             		 ]
         }]
     });
-});
+}); */
 </script>
 </head>
 <body>
@@ -56,7 +56,7 @@ $(function () {
 		<table id="table_content" style="width: 600px">
 			<tr>
 				<td width=40% class="tdcenter" rowspan=6>
-				<img src="${vo.image }"></td>
+				<img src="${vo.poster }"></td>
 				<th colspan=2>${vo.title }</th>
 			</tr>
 			<tr>
@@ -65,11 +65,11 @@ $(function () {
 			</tr>
 			<tr>
 				<td width=20% align=right>예매율</td>
-				<td width=40%>${vo.percent }%</td>
+				<td width=40%>${vo.author }%</td>
 			</tr>
 			<tr>
 				<td width=20% align=right>찜</td>
-				<td width=40%>♥&nbsp;${vo.like }</td>
+				<td width=40%>♥&nbsp;${vo.publisher }</td>
 			</tr>
 			<tr>
 				<td width=20% align=right>개봉일</td>
@@ -77,7 +77,7 @@ $(function () {
 			</tr>
 			<tr>
 				<td width=20% align=right>평점</td>
-				<td width=40%>${vo.reserve }점(100점 만점)</td>
+				<td width=40%>${vo.review }점(100점 만점)</td>
 			</tr>
 		</table>
 		<table id="table_content" style="width:600px">
@@ -89,14 +89,14 @@ $(function () {
 					<img src="feel.png">
 				</td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<th>${vo.title }&nbsp;긍정부정 분석!</th>
 			</tr>
 			<tr>
 				<td class="tdcenter">
 					<div id="container" style="height:400px"></div>
 				</td>
-			</tr>
+			</tr> --%>
 		</table>
 <%-- 		<table id="table_content" style="width:600px">
 			<tr>
@@ -109,13 +109,13 @@ $(function () {
 			</tr>
 		</table> --%>
 		<table id="table_content" style="width:900px">
-			<tr>
+<%-- 			<tr>
 				<td width=20% align=left>긍정,부정평가</td>
-				<%-- <c:forEach var="vp" items="${nlist }"> --%>
+				<c:forEach var="vp" items="${nlist }">
 				<td width=10%>♥ ${nlist.get(1)}</td>
 				<td width=10%>♡ ${nlist.get(3)}</td>
-		<%-- 		</c:forEach> --%>
-			</tr>
+				</c:forEach>
+			</tr> --%>
 			<tr>
 				<td align=right>
 					<a href="list.do">목록</a>&nbsp;&nbsp;
